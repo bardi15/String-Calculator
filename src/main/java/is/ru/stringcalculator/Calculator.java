@@ -34,7 +34,7 @@ public class Calculator
 	
 	public static String[] SplitNumbers(String numbers)
 	{
-		return numbers.split(",");
+		return numbers.split(",|\\n");
 	}
 
 
