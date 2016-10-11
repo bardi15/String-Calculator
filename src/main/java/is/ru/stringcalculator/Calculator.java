@@ -55,27 +55,53 @@ public class Calculator
 	
 	public static int ParseToInt(String number)
 	{
-		int num = Integer.parseInt(number);
-		if (num > 1000)
+		if (number.length() == 0 || Integer.parseInt(number) > 1000)
 		{
 			return 0;
 		}
-		return num;
+		return Integer.parseInt(number);
 	}
 	
 	public static String[] SplitNumbers(String numbers)
 	{
-		return numbers.split(",|\\n");
+		ArrayList<String> l1 = new ArrayList<String>();
+		String query = ",|\\n";
+		if (numbers.startsWith("//"))
+		{
+			numbers = numbers.substring(2, numbers.length());
+			for (int x = 0; x < numbers.length(); x++)
+			{
+				if (Character.isDigit(numbers.charAt(x)))
+				{
+					break;
+				}
+				else
+				{
+					l1.add(String.valueOf(numbers.charAt(x)));
+				}
+			}
+			
+			
+			for (int i = 0; i < l1.size(); i++)
+			{
+				query += "|" + l1.get(i);
+			}
+			
+		}
+
+		String[] s = numbers.split(query);
+		
+		return s;
 	}
 	
 	public static boolean CheckNegative (int numbers)
 	{
 		if (numbers < 0)
 		{
-			System.out.println("ITS NEGATIVE");
 			return true;
 		}
 		
 		return false;
 	}
+	
 }
