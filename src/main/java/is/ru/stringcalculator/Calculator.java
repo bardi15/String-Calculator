@@ -11,20 +11,30 @@ public class Calculator
 		}
 		if ( numbers.contains((",")) )
 		{
-			String[] data = numbers.split(",");
+			String[] data = SplitNumbers(numbers);
 			int num = 0;
 			for (int k = 0; k < data.length; k++)
 			{
-				num += Integer.parseInt(data[k]);
+				num += ParseToInt(data[k]);
 			}
-			System.out.println((num));
 			return num;
 		}
 		else
 		{
-			return Integer.parseInt(numbers);
+			return ParseToInt(numbers);
 		}
 
+	}
+	
+	
+	public static int ParseToInt(String number)
+	{
+		return Integer.parseInt(number);
+	}
+	
+	public static String[] SplitNumbers(String numbers)
+	{
+		return numbers.split(",");
 	}
 
 
