@@ -9,14 +9,22 @@ public class Calculator
 		{
 			return 0;
 		}
-		String[] data = numbers.split(",");
-		int num = 0;
-		for (int k = 0; k < data.length; k++)
+		if ( numbers.contains((",")) )
 		{
-			num += Integer.parseInt(data[k]);
+			String[] data = numbers.split(",");
+			int num = 0;
+			for (int k = 0; k < data.length; k++)
+			{
+				num += Integer.parseInt(data[k]);
+			}
+			System.out.println((num));
+			return num;
 		}
-		System.out.println((num));
-		return num;
+		else
+		{
+			return Integer.parseInt(numbers);
+		}
+
 	}
 
 
