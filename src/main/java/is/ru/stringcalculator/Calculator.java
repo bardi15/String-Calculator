@@ -2,20 +2,25 @@ package is.ru.stringcalculator;
 
 import java.util.ArrayList;
 
-
 public class Calculator 
 {
-
 	public static int add(String numbers) throws IllegalArgumentException
 	{
 		if (numbers.equals(""))
 		{
 			return 0;
 		}
+		
+		return FindSum(numbers);
 
+	}
+
+	public static int FindSum(String numbers)
+	{
 		String[] data = SplitNumbers(numbers);
 		ArrayList<Integer> negNums = new ArrayList<Integer>();
 		int sum = 0;
+		
 		for (int k = 0; k < data.length; k++)
 		{
 			int currNum = ParseToInt(data[k]);
@@ -36,9 +41,8 @@ public class Calculator
 		}
 		
 		return sum;
-
 	}
-
+	
 	public static String CreateNegativeString(ArrayList<Integer> negNums)
 	{
 		String negString = "";
@@ -50,7 +54,6 @@ public class Calculator
 		negString += negNums.get(negNums.size() - 1);
 		
 		return negString;
-		
 	}
 	
 	public static int ParseToInt(String number)
@@ -68,7 +71,6 @@ public class Calculator
 		String query = ",|\\n";
 		if (numbers.startsWith("//"))
 		{
-			numbers = numbers.substring(2, numbers.length());
 			for (int x = 0; x < numbers.length(); x++)
 			{
 				if (Character.isDigit(numbers.charAt(x)))
@@ -77,10 +79,13 @@ public class Calculator
 				}
 				else
 				{
-					l1.add(String.valueOf(numbers.charAt(x)));
+					String currValue = String.valueOf(numbers.charAt(x));
+					if (! (l1.contains(currValue)) )
+					{
+						l1.add(currValue);
+					}
 				}
 			}
-			
 			
 			for (int i = 0; i < l1.size(); i++)
 			{
@@ -88,20 +93,7 @@ public class Calculator
 			}
 			
 		}
-
-		String[] s = numbers.split(query);
-		
-		return s;
-	}
-	
-	public static boolean CheckNegative (int numbers)
-	{
-		if (numbers < 0)
-		{
-			return true;
-		}
-		
-		return false;
-	}
-	
+				
+		return numbers.split(query);
+	}	
 }
