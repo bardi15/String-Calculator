@@ -14,8 +14,6 @@ public class Calculator
 		}
 
 		String[] data = SplitNumbers(numbers);
-		//int [] negativeList = new int [data.length];
-		String negativeString = "";
 		ArrayList<Integer> negNums = new ArrayList<Integer>();
 		int sum = 0;
 		for (int k = 0; k < data.length; k++)
@@ -57,7 +55,12 @@ public class Calculator
 	
 	public static int ParseToInt(String number)
 	{
-		return Integer.parseInt(number);
+		int num = Integer.parseInt(number);
+		if (num > 1000)
+		{
+			return 0;
+		}
+		return num;
 	}
 	
 	public static String[] SplitNumbers(String numbers)
