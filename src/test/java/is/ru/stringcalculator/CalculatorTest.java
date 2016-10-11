@@ -4,6 +4,10 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import org.junit.Rule;
+import org.junit.rules.ExpectedException;
+import org.hamcrest.Matcher;
+
 public class CalculatorTest {
 
 	public static void main(String args[]) 
@@ -11,6 +15,9 @@ public class CalculatorTest {
       org.junit.runner.JUnitCore.main("is.ru.stringcalculator.CalculatorTest");
     }
 
+	@Rule
+	public ExpectedException exception = ExpectedException.none();
+	
 	@Test
 	public void testEmptyString() 
 	{
@@ -40,5 +47,19 @@ public class CalculatorTest {
 	{
     	assertEquals(6, Calculator.add("1\n2,3"));
     }
+
+	@Test
+    public void testFunkyNewLine()
+	{
+    	assertEquals(1, Calculator.add("1,\n"));
+    }	
 	
+	@Test
+    public void testNegative()
+	{
+		exception.expect(IllegalArgumentException.class);
+		exception.expectMessage("Negatives not allowed: -4,-5");
+		
+    	Calculator.add("-4,-5");
+    }	
 }
