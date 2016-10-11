@@ -74,4 +74,10 @@ public class CalculatorTest {
 	{
     	assertEquals(3, Calculator.add("//;\n1;2"));
     }	
+	
+	@Test
+    public void testHorribleDelimiter()
+	{
+    	assertEquals(48, Calculator.add("//;x,e\n\n1;25\n6;x8e8"));
+    }	
 }
